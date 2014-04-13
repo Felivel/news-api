@@ -1,12 +1,17 @@
         require('newrelic');
 
-        var express = require('express');
+		var connect = require('connect');		
+		var express = require('express');		
+        var cookieParser = require('cookie-parser');
+        var bodyParser = require('body-parser');
+		
         var url = require('url');
         var app = express();
         var auth = require("./dboxauth.js");
-        app.use(express.cookieParser());
-        app.use(express.bodyParser());
-        app.use('/doc', express.static(__dirname + '/doc'));
+		
+        app.use(cookieParser);
+        app.use(bodyParser);
+        //app.use('/doc', express.static(__dirname + '/doc'));
         var dropbox = require('./dropbox-datastores-1.0-latest.js');
         var APP_KEY = "mmddg539ftzuqi3";
         var APP_SECRET = "c0pv47qtjbrs96c";
@@ -108,7 +113,7 @@
                         "user": results[0].get("user")
                     });
 
-                    console.log(results[0].get("user") + " logged in");
+                    log(results[0].get("user") + " logged in");
 
                 } else {
                     res.send(403, 'Access denied');
@@ -868,4 +873,4 @@
         }
 
         now = new Date();
-        console.log(now.getHours() * 10000 + now.getMinutes() + now.getSeconds() + ': Server Started');
+        log('Server Started');

@@ -1,12 +1,9 @@
        var crypto = require('crypto'),
-           express = require('express'),
            request = require('request'),
            url = require('url');
 
 
 
-       var app = express();
-        //app.use(express.cookieParser());
        var dropbox = require('./dropbox-datastores-1.0-latest.js');
        
 
