@@ -3,16 +3,23 @@
 	"version": "0.0.1",
 	"description": "NewsAPI is a unified search function offered through a middleware, that interfaces with multiple international news sites with Dropbox integration.",
 	"dependencies": {
-		"express" : "*",
-		"connect" : "*",
-		"serve-static" : "*",
-		"cookie-parser" : "*",
-		"body-parser" : "*",
-		"request" : "*",
-		"xhr2" : "*",
-		"apidoc" : "*",
-		"newrelic" : "*",
-		"socket.io" : "*"
+		"express": "*",
+		"connect": "*",
+		"serve-static": "*",
+		"cookie-parser": "*",
+		"body-parser": "*",
+		"request": "*",
+		"xhr2": "*",
+		"apidoc": "*",
+		"newrelic": "*",
+		"socket.io": "*"
 	},
-	"scripts": { "postinstall": "apidoc -f 'dropboxedNews.js'" }
+	"scripts": {
+		"postinstall": "apidoc -f 'dropboxedNews.js'",
+		"start": "dropboxedNews.js"
+	},
+	"subdomain": "felivel-news-api-merger",
+	"engines": {
+		"node": "0.10.x"
+	}
 }

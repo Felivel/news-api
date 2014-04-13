@@ -9,9 +9,9 @@
         var app = express();
         var auth = require("./dboxauth.js");
 		
-        app.use(cookieParser);
-        app.use(bodyParser);
-        //app.use('/doc', express.static(__dirname + '/doc'));
+        app.use(cookieParser());
+        app.use(bodyParser());
+        app.use('/doc', express.static(__dirname + '/doc'));
         var dropbox = require('./dropbox-datastores-1.0-latest.js');
         var APP_KEY = "mmddg539ftzuqi3";
         var APP_SECRET = "c0pv47qtjbrs96c";
@@ -29,10 +29,8 @@
             log: false
         });
 
-
+		
         function dbSetup() {
-
-
             var client = new dropbox.Client({
                 "key": APP_KEY,
                 "secret": APP_SECRET,
@@ -48,8 +46,6 @@
                 datastore = ds;
 
             });
-
-
         }
 
 
@@ -88,11 +84,10 @@
          *     "Access denied"
          *  }
          */
-        app.post('/login', function (req, res) {
-
+        app.post('/login', function (req, res) {			
             res.setHeader('Content-Type', 'text/json');
 
-
+	
 
             if (req.body.username && req.body.password) {
 
@@ -217,7 +212,7 @@
          * @apiGroup Admin
          */
         app.get('/admin/login', function (req, res) {
-
+			
             auth.login(req, res);
 
         });
@@ -243,6 +238,7 @@
          * @apiDescription Basic page showing all folders and searches
          */
         app.get('/', function (req, res) {
+			
             res.sendfile('./index.html');
 
         });
@@ -545,6 +541,7 @@
          *     }
          */
         app.get('/searches', function (req, res) {
+			
             var now = new Date();
             log('History was retrived');
 
@@ -654,7 +651,7 @@
          *     }
          */
         app.get('/folders', function (req, res) {
-
+			
             res.setHeader('Content-Type', 'text/json');
             log('Folders was retrived');
 
@@ -765,7 +762,6 @@
          *     }
          */
         app.get('/folders/:id/users/:user', function (req, res) {
-
 
             res.setHeader('Content-Type', 'text/json');
             var id = req.params.id;
